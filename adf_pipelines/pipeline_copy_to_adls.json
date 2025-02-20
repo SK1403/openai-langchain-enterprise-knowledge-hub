@@ -1,0 +1,73 @@
+{
+  "name": "ADF_Ingest_Enterprise_Knowledge_To_ADLS",
+  "properties": {
+    "description": "Azure Data Factory pipeline that orchestrates automated ingestion from enterprise sources to ADLS Gen2 and triggers Azure Databricks RAG ETL.",
+    "activities": [
+      {
+        "name": "Copy_Sources_To_ADLS_Gen2",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 3,
+          "retryIntervalInSeconds": 30
+        },
+        "typeProperties": {
+          "source": {
+            "type": "BinarySource",
+            "storeSettings": {
+              "type": "FileServerReadSettings",
+              "recursive": true
+            }
+          },
+          "sink": {
+            "type": "BinarySink",
+            "storeSettings": {
+              "type": "AzureBlobFSWriteSettings",
+              "copyBehavior": "PreserveHierarchy"
+            }
+          },
+          "enableStaging": false
+        },
+        "inputs": [
+          {
+            "referenceName": "EnterpriseSourceFiles",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ADLS_Gen2_Raw_Corpus",
+            "type": "DatasetReference"
+          }
+        ]
+      },
+      {
+        "name": "Trigger_Azure_Databricks_ETL",
+        "type": "DatabricksNotebook",
+        "dependsOn": [
+          {
+            "activity": "Copy_Sources_To_ADLS_Gen2",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookPath": "/Production/RAG/pyspark_etl_chunking",
+          "baseParameters": {
+            "input_adls_path": "abfss://enterprise-knowledge@adlsgen2.dfs.core.windows.net/raw/",
+            "delta_output_table": "enterprise_rag.document_chunks_silver"
+          }
+        },
+        "linkedServiceName": {
+          "referenceName": "AzureDatabricks_LinkedService",
+          "type": "LinkedServiceReference"
+        }
+      }
+    ]
+  }
+}

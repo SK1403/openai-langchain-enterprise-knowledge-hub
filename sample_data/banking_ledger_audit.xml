@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AzureTreasuryAuditReport fiscalQuarter="Q4-2024" sourceSystem="Azure Databricks Lakehouse">
+  <AuditMetadata>
+    <StorageEngine>Delta Lake on ADLS Gen2</StorageEngine>
+    <OrchestrationTool>Azure Data Factory (ADF)</OrchestrationTool>
+    <ComplianceStandard>FINRA &amp; SOC2 Type II</ComplianceStandard>
+    <TotalProcessedTransactions>48290</TotalProcessedTransactions>
+  </AuditMetadata>
+
+  <HighValueSettlements>
+    <Settlement id="SETTLE-AZ-101" currency="USD">
+      <Amount>32500000.00</Amount>
+      <Timestamp>2024-10-14T09:30:00Z</Timestamp>
+      <Beneficiary>Microsoft Ireland Operations Limited</Beneficiary>
+      <ContractRef>AZURE-EA-2024-ENTERPRISE</ContractRef>
+      <Description>Annual Enterprise Agreement &amp; Azure Databricks Core Commitment</Description>
+      <AuthorizedBy>Chief Financial Officer</AuthorizedBy>
+    </Settlement>
+
+    <Settlement id="SETTLE-AZ-102" currency="GBP">
+      <Amount>6400000.00</Amount>
+      <Timestamp>2024-11-02T14:15:00Z</Timestamp>
+      <Beneficiary>Barclays International Treasury</Beneficiary>
+      <ContractRef>FX-HEDGE-2024-11</ContractRef>
+      <Description>Foreign Currency Currency Swap &amp; Interest Rate Hedging</Description>
+      <AuthorizedBy>Head of Global Treasury</AuthorizedBy>
+    </Settlement>
+
+    <Settlement id="SETTLE-AZ-103" currency="USD">
+      <Amount>12800000.00</Amount>
+      <Timestamp>2024-12-01T11:45:00Z</Timestamp>
+      <Beneficiary>Databricks Inc.</Beneficiary>
+      <ContractRef>DBW-ENTERPRISE-SUPPORT-01</ContractRef>
+      <Description>Enterprise 24/7 Premium Mission-Critical Support &amp; Unity Catalog SLA</Description>
+      <AuthorizedBy>VP Enterprise Infrastructure</AuthorizedBy>
+    </Settlement>
+  </HighValueSettlements>
+</AzureTreasuryAuditReport>

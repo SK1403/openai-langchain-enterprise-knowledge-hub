@@ -1,0 +1,6 @@
+employee_id,full_name,department,job_title,entra_id_group,office_location,email
+AZ-1010,Alexander Vance,Engineering,Principal Azure Architect,sg-engineering-leads,Redmond WA,alex.vance@contoso.com
+AZ-1020,Sophia Chen,Legal,Senior Corporate Counsel,sg-legal-counsel,Seattle WA,sophia.chen@contoso.com
+AZ-1030,Julian Ross,Finance,VP Global Treasury,sg-treasury-approvers,London UK,julian.ross@contoso.com
+AZ-1040,Kavita Patel,Data & AI,Lead Databricks Engineer,sg-data-engineers,Chicago IL,kavita.patel@contoso.com
+AZ-1050,Victoria Sterling,Executive,Chief Operating Officer,sg-executive-board,New York NY,victoria.coo@contoso.com

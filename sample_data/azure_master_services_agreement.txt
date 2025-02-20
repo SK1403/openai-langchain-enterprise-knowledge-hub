@@ -1,0 +1,20 @@
+MICROSOFT AZURE ENTERPRISE CLOUD AGREEMENT (ECA)
+Agreement Identifier: MSFT-AZURE-ECA-2025-001
+Effective Date: January 15, 2025
+Parties: Contoso Global Enterprises ("Customer") and Microsoft Corporation ("Licensor")
+
+SECTION 1: AZURE OPENAI & DATABRICKS SERVICE LEVEL AGREEMENTS (SLA)
+Licensor guarantees a monthly uptime percentage of at least 99.9% for Azure OpenAI API endpoints and 99.95% for Azure Databricks workspace clusters deployed with Multi-AZ redundancy.
+In the event of an SLA breach, Customer shall receive a 25% Service Credit against the applicable monthly billing cycle.
+
+SECTION 2: LIMITATION OF LIABILITY
+Except for liability arising from gross negligence, willful misconduct, or breach of Section 4 (Confidentiality & Data Protection), neither party's aggregate liability under this agreement shall exceed the total monetary amounts paid by Customer under this agreement during the twelve (12) months preceding the incident.
+Consequential, punitive, indirect, or lost profit damages are expressly disclaimed by both parties.
+
+SECTION 3: INTELLECTUAL PROPERTY & DATA PRIVACY
+Customer retains sole and exclusive ownership of all Customer Data, proprietary prompts, embeddings, and fine-tuned model artifacts.
+Azure OpenAI Service Commitment: Customer Data, inputs, and outputs are NOT used to train or improve any Microsoft or OpenAI base models. Data remains strictly within the designated Azure geography (East US 2 / West Europe).
+
+SECTION 4: TERMINATION AND MIGRATION
+Customer may terminate this Enterprise Agreement for convenience upon ninety (90) days prior written notice.
+Upon termination, Licensor must provide full export capabilities of all Delta Lake tables and ADLS Gen2 storage blobs without penalty fees.

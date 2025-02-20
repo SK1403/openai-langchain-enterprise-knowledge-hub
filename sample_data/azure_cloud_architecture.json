@@ -1,0 +1,57 @@
+{
+  "organization": "Contoso Global Financial Enterprises",
+  "cloud_environment": "Microsoft Azure (Commercial Enterprise)",
+  "subscription_id": "sub-prod-enterprise-001",
+  "resource_group": "rg-enterprise-ai-platform-prod",
+  "infrastructure_architecture": {
+    "network": {
+      "vnet_name": "vnet-azure-core-prod",
+      "address_space": "10.200.0.0/16",
+      "subnets": [
+        {"name": "snet-databricks-host", "cidr": "10.200.1.0/24", "delegation": "Microsoft.Databricks/workspaces"},
+        {"name": "snet-databricks-container", "cidr": "10.200.2.0/24", "delegation": "Microsoft.Databricks/workspaces"},
+        {"name": "snet-openai-private-endpoints", "cidr": "10.200.3.0/24", "private_endpoint_network_policies": "Disabled"}
+      ]
+    },
+    "azure_data_services": [
+      {
+        "service": "Azure Data Factory (ADF)",
+        "factory_name": "adf-enterprise-rag-etl-prod",
+        "managed_virtual_network": true,
+        "integration_runtime": "AutoResolveIntegrationRuntime",
+        "linked_services": ["ADLS_Gen2_Raw_Corpus", "AzureDatabricks_LinkedService", "AzureKeyVault_Prod"]
+      },
+      {
+        "service": "Azure Databricks",
+        "workspace_name": "dbw-enterprise-rag-analytics",
+        "tier": "Premium",
+        "cluster_type": "Automated Multi-Node Spark Cluster (13.3 LTS ML)",
+        "node_types": "Standard_E8ds_v5 (Memory Optimized)",
+        "min_workers": 2,
+        "max_workers": 16,
+        "unity_catalog_enabled": true,
+        "storage": "abfss://delta-lake@adlsgen2.dfs.core.windows.net/"
+      },
+      {
+        "service": "Azure OpenAI Service",
+        "resource_name": "aoai-enterprise-rag-prod",
+        "region": "East US 2",
+        "deployments": [
+          {"deployment_name": "gpt-4o", "model_name": "gpt-4o", "capacity_tpm": 120000},
+          {"deployment_name": "text-embedding-3-small", "model_name": "text-embedding-3-small", "capacity_tpm": 250000}
+        ],
+        "private_endpoint_enabled": true,
+        "entra_id_auth_only": true
+      }
+    ],
+    "storage": [
+      {
+        "account_name": "adlsgen2enterpriseprod",
+        "account_kind": "StorageV2",
+        "hierarchical_namespace": true,
+        "replication": "ZRS (Zone-Redundant Storage)",
+        "containers": ["raw-corpus", "delta-silver", "embeddings-gold"]
+      }
+    ]
+  }
+}
